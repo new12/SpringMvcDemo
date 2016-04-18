@@ -1,4 +1,4 @@
-package configuration;
+package config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.hibernate.SessionFactory;
@@ -23,7 +23,7 @@ import java.util.Properties;
  * Created by Administrator on 2016/4/16.
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"service","dao"})
 @PropertySource("classpath:resources.properties")
 @EnableTransactionManagement
 public class RootConfig {
@@ -58,7 +58,7 @@ public class RootConfig {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
-        sfb.setPackagesToScan(new String[]{"daoImpl"});
+        sfb.setPackagesToScan(new String[]{"entity"});
         Properties props = new Properties();
         props.setProperty("hibernate.dialect",dbDriver);
         props.setProperty("hibernate.show_sql","false");
