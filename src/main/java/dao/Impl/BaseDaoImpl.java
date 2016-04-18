@@ -1,6 +1,6 @@
 package dao.Impl;
 
-import dao.CrudDao;
+import dao.BaseDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +10,20 @@ import java.io.Serializable;
 /**
  * Created by kylong on 2016/4/18.
  */
-public  class CrudDaoImpl<T, PK extends Serializable> implements CrudDao<T,PK> {
+public  class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T,PK> {
     private Class<T> type;
-    public CrudDaoImpl(Class<T> type){
+    public BaseDaoImpl(Class<T> type){
         this.type = type;
     }
     private SessionFactory sessionFactory;
 
     @Override
-    public PK create(T newInstance) {
+    public PK save(T newInstance) {
         return (PK)getSession().save(newInstance);
     }
 
     @Override
-    public T read(PK id) {
+    public T getById(PK id) {
         return (T)getSession().get(type,id);
     }
 
@@ -34,7 +34,7 @@ public  class CrudDaoImpl<T, PK extends Serializable> implements CrudDao<T,PK> {
 
     @Override
     public void delete(T o) {
-        getSession().update(o);
+        getSession().delete(o);
     }
 
     public SessionFactory getSessionFactory() {
