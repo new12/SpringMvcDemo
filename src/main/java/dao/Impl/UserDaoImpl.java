@@ -13,11 +13,4 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     public UserDaoImpl() {
         super(User.class);
     }
-
-    @Override
-    public void addRole(Role role) {
-        if (role == null){
-            throw new RuntimeException("role is null");
-        }
-    }
 }

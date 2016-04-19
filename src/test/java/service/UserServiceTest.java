@@ -1,13 +1,11 @@
 package service;
 
 import basic.BasicTest;
-import config.RootConfig;
 import entity.User;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * Created by kylong on 2016/4/18.
@@ -22,6 +20,14 @@ public class UserServiceTest extends BasicTest {
         user.setName("admin");
         user.setPassword("123");
         service.save(user);
+    }
+
+    @Test
+    public void testFindByIds(){
+        Integer[] ids = new Integer[2];
+        ids[0] = new Integer(1);
+        List<User> users = service.findByIds(ids);
+        System.out.println(users);
     }
 
 }

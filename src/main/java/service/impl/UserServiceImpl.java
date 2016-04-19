@@ -27,13 +27,4 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         this.userDao = userDao;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
-
-    @Override
-    public void addRole(Role role) {
-
-    }
 }

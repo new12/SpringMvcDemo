@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import service.BaseService;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by kylong on 2016/4/18.
@@ -37,6 +38,16 @@ public  class BaseServiceImpl<T> implements BaseService<T> {
     @Override
     public T getById(Serializable id) {
         return baseDao.getById(id);
+    }
+
+    @Override
+    public List<T> findByIds(Serializable[] ids) {
+        return baseDao.findByIds(ids);
+    }
+
+    @Override
+    public List<T> findAll() {
+        return baseDao.findAll();
     }
 
 }

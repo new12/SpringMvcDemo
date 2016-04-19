@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by kylong on 2016/4/18.
@@ -14,4 +15,8 @@ public interface BaseDao<T> {
     void update(T o);
 
     void delete(T o);
+
+    List<T> findByIds(Serializable[] ids);
+
+    List<T> findAll();
 }
