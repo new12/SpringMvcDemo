@@ -41,6 +41,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void grantPrivilegesToRole(Integer roleId, Integer[] privilegeIds) {
-        
+
     }
 }

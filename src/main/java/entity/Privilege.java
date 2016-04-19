@@ -21,13 +21,13 @@ public class Privilege implements GrantedAuthority {
     private String value;
     @ManyToOne
     @JoinColumn(name = "category_id",nullable = false)
-    private PrivilegeCategory privilegeCategory;
+    private Domain domain;
     @ManyToMany(mappedBy = "privileges")
     private Set<Role> roles = new HashSet<Role>();
 
     @Override
     public String getAuthority() {
-        return privilegeCategory.getName()+":"+value;
+        return domain.getName()+":"+value;
     }
 
     public String getValue() {
@@ -44,5 +44,17 @@ public class Privilege implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
     }
 }

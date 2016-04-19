@@ -8,8 +8,8 @@ import java.util.Set;
  * Created by kylong on 2016/4/18.
  */
 @Entity
-@Table(name = "privilege_category")
-public class PrivilegeCategory {
+@Table(name = "domain")
+public class Domain {
     @Id
     @GeneratedValue
     private Integer id;
@@ -24,5 +24,13 @@ public class PrivilegeCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
     }
 }
