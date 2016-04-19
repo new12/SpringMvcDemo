@@ -2,6 +2,7 @@ package service;
 
 import basic.BasicTest;
 import entity.Domain;
+import entity.Privilege;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +14,20 @@ public class PrivilegeServiceTest extends BasicTest{
     @Autowired
     private PrivilegeService service;
     @Autowired
-    private DomainService categoryService;
+    private DomainService domainService;
     @Test
-    public void testSaveCategory(){
+    public void testSaveDomain(){
         Domain category = new Domain();
         category.setName("job");
-        categoryService.save(category);
+        domainService.save(category);
+    }
+
+    @Test
+    public void testSavePrivilege(){
+        Privilege e = new Privilege();
+        e.setName("查看job表");
+        e.setValue("view");
+        service.save(1, e);
     }
 
 }

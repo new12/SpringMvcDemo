@@ -15,7 +15,7 @@ public class Domain {
     private Integer id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "privilegeCategory")
+    @OneToMany(mappedBy = "domain")
     private Set<Privilege> privileges = new HashSet<Privilege>();
 
     public String getName() {

@@ -13,11 +13,13 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-    @Column
+    @Column(unique = true)
     private String name;
     @Column
     private String password;
-    @ManyToMany
+    @Column
+    private Integer active;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="user_role_relation",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -48,5 +50,15 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean getActive() {
+        if (active==null) return  false;
+        int value = active.intValue();
+        return (value==1)?true:false;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

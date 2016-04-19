@@ -20,7 +20,7 @@ public class Privilege implements GrantedAuthority {
     @Column
     private String value;
     @ManyToOne
-    @JoinColumn(name = "category_id",nullable = false)
+    @JoinColumn(name = "domain_id",nullable = false)
     private Domain domain;
     @ManyToMany(mappedBy = "privileges")
     private Set<Role> roles = new HashSet<Role>();
@@ -56,5 +56,22 @@ public class Privilege implements GrantedAuthority {
 
     public void setDomain(Domain domain) {
         this.domain = domain;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Privilege)) return  false;
+        Privilege other = (Privilege) obj;
+        return id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    public Integer getId(){
+        return  id;
     }
 }
