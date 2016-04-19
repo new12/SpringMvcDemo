@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.BaseDao;
 import dao.UserDao;
+import entity.Role;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,12 +23,17 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     private UserDao userDao;
     @Autowired
     public UserServiceImpl(UserDao userDao){
-        super();
+        super(userDao);
         this.userDao = userDao;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
+    }
+
+    @Override
+    public void addRole(Role role) {
+
     }
 }

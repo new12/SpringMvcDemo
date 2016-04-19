@@ -29,7 +29,7 @@ import java.util.Properties;
 public class RootConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(RootConfig.class);
 
-    @Value("{db.url}")
+    @Value("${db.url}")
     private String dbUrl;
 
     @Value("${db.password}")

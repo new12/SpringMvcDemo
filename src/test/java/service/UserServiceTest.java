@@ -1,5 +1,6 @@
 package service;
 
+import basic.BasicTest;
 import config.RootConfig;
 import entity.User;
 import org.junit.Test;
@@ -11,9 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * Created by kylong on 2016/4/18.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {RootConfig.class})
-public class UserServiceTest {
+
+public class UserServiceTest extends BasicTest {
     @Autowired
     private UserService service;
     @Test
@@ -23,4 +23,5 @@ public class UserServiceTest {
         user.setPassword("123");
         service.save(user);
     }
+
 }

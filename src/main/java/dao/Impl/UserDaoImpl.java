@@ -1,6 +1,7 @@
 package dao.Impl;
 
 import dao.UserDao;
+import entity.Role;
 import entity.User;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +9,15 @@ import org.springframework.stereotype.Repository;
  * Created by kylong on 2016/4/18.
  */
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User,Integer> implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     public UserDaoImpl() {
         super(User.class);
+    }
+
+    @Override
+    public void addRole(Role role) {
+        if (role == null){
+            throw new RuntimeException("role is null");
+        }
     }
 }

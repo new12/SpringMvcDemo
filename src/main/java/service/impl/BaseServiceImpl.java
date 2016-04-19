@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import service.BaseService;
 
 import java.io.Serializable;
@@ -9,11 +10,12 @@ import java.io.Serializable;
 /**
  * Created by kylong on 2016/4/18.
  */
+@Transactional
 public  class BaseServiceImpl<T> implements BaseService<T> {
 
-    protected BaseDao<T,Serializable> baseDao;
+    protected BaseDao<T> baseDao;
 
-    public BaseServiceImpl(BaseDao<T,Serializable> dao){
+    public BaseServiceImpl(BaseDao<T> dao){
             this.baseDao = dao;
     }
 

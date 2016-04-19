@@ -1,5 +1,6 @@
 package service;
 
+import entity.Role;
 import entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -8,4 +9,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 
 public interface UserService extends UserDetailsService,BaseService<User> {
+    public void addRole(Role role);
 }

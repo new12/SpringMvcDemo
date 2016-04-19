@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by kylong on 2016/4/18.
  */
-public  class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T,PK> {
+public  class BaseDaoImpl<T> implements BaseDao<T> {
     private Class<T> type;
     public BaseDaoImpl(Class<T> type){
         this.type = type;
@@ -18,12 +18,12 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T,PK> {
     private SessionFactory sessionFactory;
 
     @Override
-    public PK save(T newInstance) {
-        return (PK)getSession().save(newInstance);
+    public Serializable save(T newInstance) {
+        return (Serializable)getSession().save(newInstance);
     }
 
     @Override
-    public T getById(PK id) {
+    public T getById(Serializable id) {
         return (T)getSession().get(type,id);
     }
 
