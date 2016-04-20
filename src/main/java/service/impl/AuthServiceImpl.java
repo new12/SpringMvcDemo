@@ -36,11 +36,6 @@ public class AuthServiceImpl implements AuthService {
         Set<Role> roles = user.getRoles();
         Set<Privilege> allPrivileges = new HashSet<Privilege>();
         for (Role r : roles){
-            if ("admin".equals(r.getName())){
-                List<Privilege> all = privilegeDao.findAll();
-                allPrivileges.addAll(all);
-                break;
-            }
             allPrivileges.addAll(r.getPrivileges());
         }
         return new org.springframework.security.core.userdetails.User(user.getName(),user.getPassword(),isEnable,true,true,true,allPrivileges);

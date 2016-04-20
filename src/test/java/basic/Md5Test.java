@@ -6,13 +6,10 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by kylong on 2016/4/20.
- */
 public class Md5Test {
     @Test
     public void testEqual(){
-        String password  = "sda@`,lsfjdcfh@123*scdy7zi[],./l:";
+        String password  = "123";
         Md5PasswordEncoder encoder = new Md5PasswordEncoder();
         String s1 = encoder.encodePassword(password, null);
         String s2 = MD5(password);
@@ -39,10 +36,6 @@ public class Md5Test {
                 buf.append(Integer.toHexString(i));
             }
             result = buf.toString();
-            // System.out.println("MD5(" + sourceStr + ",32) = " + result);
-
-            // System.out.println("MD5(" + sourceStr + ",16) = " +
-            // buf.toString().substring(8, 24));
         } catch (NoSuchAlgorithmException e) {
             System.out.println(e);
         }

@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class Privilege implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return domain.getName()+":"+value;
+        return domain.getName()+"_"+value;
     }
 
     public String getValue() {
@@ -45,7 +46,7 @@ public class Privilege implements GrantedAuthority {
     public void setName(String name) {
         this.name = name;
     }
-
+    @JsonIgnore
     public Set<Role> getRoles() {
         return roles;
     }
