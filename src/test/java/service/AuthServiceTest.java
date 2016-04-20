@@ -20,4 +20,8 @@ public class AuthServiceTest extends BasicTest {
     public void testGrantRolesToUser(){
         authService.grantRolesToUser(1,new Integer[]{1});
     }
+    @Test
+    public void testGrantPrivilegesToRole(){
+        authService.grantPrivilegesToRole(1,new Integer[]{1});
+    }
 }
