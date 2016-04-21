@@ -5,6 +5,7 @@ import dao.UserDao;
 import entity.Role;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -27,4 +28,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         this.userDao = userDao;
     }
 
+    @Override
+    @PreAuthorize("principal==#name")
+    public User findByName(String name) {
+        return userDao.findByName(name);
+    }
 }
