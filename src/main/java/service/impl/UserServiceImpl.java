@@ -29,7 +29,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
-    @PreAuthorize("principal==#name")
+    @PreAuthorize("principal.username ==#name")
     public User findByName(String name) {
         return userDao.findByName(name);
     }

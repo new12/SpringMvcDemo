@@ -5,10 +5,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -26,6 +23,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"service","dao"})
 @PropertySource("classpath:resources.properties")
 @EnableTransactionManagement
+@Import({SecurityConfig.class})
 public class RootConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(RootConfig.class);
 
