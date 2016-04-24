@@ -61,6 +61,7 @@ public class Privilege implements GrantedAuthority {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) return true;
         if (obj == null) return false;
         if (!(obj instanceof Privilege)) return  false;
         Privilege other = (Privilege) obj;
