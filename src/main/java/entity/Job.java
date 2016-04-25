@@ -5,12 +5,13 @@ import javax.persistence.*;
 /**
  * Created by kylong on 2016/4/24.
  */
-@Entity
+@Entity(name="Job")
 @Table(name = "job")
 public class Job {
     @Id
     @GeneratedValue
     private int id;
+    @Column
     private String name;
     @ManyToOne
     @JoinColumn(name="user_id")

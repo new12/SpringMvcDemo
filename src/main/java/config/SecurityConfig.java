@@ -29,15 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
    public void configureGlobal(AuthenticationManagerBuilder auth) throws  Exception{
-//       auth
-//       .inMemoryAuthentication().withUser("user").password("password").roles("USER");
         auth.authenticationProvider(daoAuthenticationProvider());
    }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.authorizeRequests().antMatchers("/static/**").permitAll()
-                .antMatchers("/user").access("hasRole('admin_view')")
+                .antMatchers("/user").access("hasRole('admin_read')")
                 .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll().and()
                 .csrf().disable();
