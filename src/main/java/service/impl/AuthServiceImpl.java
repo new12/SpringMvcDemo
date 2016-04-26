@@ -35,8 +35,7 @@ public class AuthServiceImpl implements AuthService {
     private RoleDao roleDao;
     @Autowired
     private PrivilegeDao privilegeDao;
-    @Autowired
-    private JobDao jobDao;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findByName(username);
@@ -69,35 +68,5 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
-    @Override
-    public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
-        UserDetails principal = (UserDetails) authentication.getPrincipal();
-        if (targetDomainObject instanceof  Job){
-            Job target = (Job)targetDomainObject;
-            if (!target.getUser().equals(principal.getUsername()))return  false;
-            Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
-            for (GrantedAuthority auth : authorities) {
-                if (auth.getAuthority().equals(permission)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
-    @Override
-    public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
-        UserDetails principal = (UserDetails) authentication.getPrincipal();
-        if (targetType.equals("entity.Job")){
-            Job target = jobDao.getById(targetId);
-            if (!target.getUser().equals(principal.getUsername()))return  false;
-            Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
-            for (GrantedAuthority auth : authorities) {
-                if (auth.getAuthority().equals(permission)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }

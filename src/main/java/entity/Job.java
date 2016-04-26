@@ -1,5 +1,7 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +17,7 @@ public class Job {
     private String name;
     @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonIgnore
     private User user;
 
     public Job() {
@@ -34,5 +37,9 @@ public class Job {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 }
