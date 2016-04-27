@@ -17,9 +17,15 @@ import java.util.List;
 public class JobController {
     @Autowired
     private JobService jobService;
-    @RequestMapping(value = "/job/{name}")
+    @RequestMapping(value = "/job/name/{name}")
     @ResponseBody
     public List<Job> findByName(@PathVariable String name){
         return  jobService.findByName(name);
     }
+    @RequestMapping(value = "/job/id/{id}")
+    @ResponseBody
+    public Job getById(@PathVariable Integer id){
+        return  jobService.getById(id);
+    }
+
 }

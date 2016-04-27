@@ -38,36 +38,35 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         if (targetDomainObject instanceof Job){
             Job target = (Job)targetDomainObject;
-            if (!target.getUser().getName().equals(principal.getUsername()))return  false;
-            Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
-            for (GrantedAuthority auth : authorities) {
-                if (auth.getAuthority().equals(permission)) {
-                    return true;
-                }
-            }
+            Boolean x = checkJobPermission(permission, principal, target);
+            if (x != null) return x;
         }
         return false;
     }
 
+    private Boolean checkJobPermission(Object permission, UserDetails principal, Job target) {
+        if (!target.getUser().getName().equals(principal.getUsername()))return  false;
+        Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
+        for (GrantedAuthority auth : authorities) {
+            if (auth.getAuthority().equals(permission)) {
+                return true;
+            }
+        }
+        return null;
+    }
+
     @Override
-    public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
-//        UserDetails principal = (UserDetails) authentication.getPrincipal();
-//        if (targetType.equals("entity.Job")){
-//            Job targe = null;
-//            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-//                @Override
-//                protected void doInTransactionWithoutResult(TransactionStatus status) {
-//                    Job target = jobService.getById(targetId);
-//                }
-//            });
-//            if (!target.getUser().equals(principal.getUsername()))return  false;
-//            Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
-//            for (GrantedAuthority auth : authorities) {
-//                if (auth.getAuthority().equals(permission)) {
-//                    return true;
-//                }
-//            }
-//        }
+    public boolean hasPermission(Authentication authentication, final Serializable targetId, String targetType, Object permission) {
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        if (targetType.equals("entity.Job")){
+            Job job = transactionTemplate.execute(new TransactionCallback<Job>() {
+                @Override
+                public Job doInTransaction(TransactionStatus status) {
+                    return jobDao.getById(targetId);
+                }
+            });
+           return  checkJobPermission(permission,principal,job);
+        }
         return false;
     }
 }

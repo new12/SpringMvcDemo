@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.JobService;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -27,8 +28,16 @@ public class JobServiceImpl extends BaseServiceImpl<Job> implements JobService {
     }
 
     @Override
+    @PreAuthorize("hasPermission(#id,'entity.Job','job_read')")
+    public Job getById(Serializable id) {
+        return super.getById(id);
+    }
+
+    @Override
     @PostFilter("hasPermission(filterObject,'job_read')")
     public List<Job> findByName(String name) {
         return jobDao.findByName(name);
     }
+
+
 }
