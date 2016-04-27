@@ -59,12 +59,7 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
     public boolean hasPermission(Authentication authentication, final Serializable targetId, String targetType, Object permission) {
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         if (targetType.equals("entity.Job")){
-            Job job = transactionTemplate.execute(new TransactionCallback<Job>() {
-                @Override
-                public Job doInTransaction(TransactionStatus status) {
-                    return jobDao.getById(targetId);
-                }
-            });
+            Job job = jobDao.getById(targetId);
            return  checkJobPermission(permission,principal,job);
         }
         return false;
