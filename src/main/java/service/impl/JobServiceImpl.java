@@ -28,13 +28,13 @@ public class JobServiceImpl extends BaseServiceImpl<Job> implements JobService {
     }
 
     @Override
-    @PreAuthorize("hasPermission(#id,'entity.Job','job_read')")
+    @PreAuthorize("hasPermission(#id,'entity.Job','')")
     public Job getById(Serializable id) {
         return super.getById(id);
     }
 
     @Override
-    @PostFilter("hasPermission(filterObject,'job_read')")
+    @PostFilter("hasPermission(filterObject,'')")
     public List<Job> findByName(String name) {
         return jobDao.findByName(name);
     }

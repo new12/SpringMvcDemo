@@ -1,11 +1,9 @@
 package service.impl;
 
 import dao.JobDao;
-import dao.PrivilegeDao;
 import dao.RoleDao;
 import dao.UserDao;
 import entity.Job;
-import entity.Privilege;
 import entity.Role;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +31,13 @@ public class AuthServiceImpl implements AuthService {
     private UserDao userDao;
     @Autowired
     private RoleDao roleDao;
-    @Autowired
-    private PrivilegeDao privilegeDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findByName(username);
         boolean isEnable = user.getActive();
         Set<Role> roles = user.getRoles();
-        Set<Privilege> allPrivileges = new HashSet<Privilege>();
-        for (Role r : roles){
-            allPrivileges.addAll(r.getPrivileges());
-        }
-        return new org.springframework.security.core.userdetails.User(user.getName(),user.getPassword(),isEnable,true,true,true,allPrivileges);
+        return new org.springframework.security.core.userdetails.User(user.getName(),user.getPassword(),isEnable,true,true,true,roles);
     }
 
     @Override
@@ -53,20 +45,9 @@ public class AuthServiceImpl implements AuthService {
         User user = userDao.getById(userId);
         if (user == null) throw new RuntimeException();
         List<Role> roles = roleDao.findByIds(roleIds);
-        for (Role e : roles){
+        for (Role e : roles) {
             user.getRoles().add(e);
         }
     }
-
-    @Override
-    public void grantPrivilegesToRole(Integer roleId, Integer[] privilegeIds) {
-        Role role = roleDao.getById(roleId);
-        if (role == null) throw  new RuntimeException();
-        List<Privilege> privileges = privilegeDao.findByIds(privilegeIds);
-        for (Privilege e : privileges){
-            role.getPrivileges().add(e);
-        }
-    }
-
 
 }

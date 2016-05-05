@@ -46,13 +46,7 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
 
     private Boolean checkJobPermission(Object permission, UserDetails principal, Job target) {
         if (!target.getUser().getName().equals(principal.getUsername()))return  false;
-        Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
-        for (GrantedAuthority auth : authorities) {
-            if (auth.getAuthority().equals(permission)) {
-                return true;
-            }
-        }
-        return null;
+        return true;
     }
 
     @Override
