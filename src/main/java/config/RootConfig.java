@@ -23,7 +23,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"service","dao"})
 @PropertySource("classpath:resources.properties")
 @EnableTransactionManagement
-@Import({SecurityConfig.class,MethodSecurityConfig.class})
+@Import({SecurityConfig.class,MethodSecurityConfig.class,OAuth2ServerConfig.class})
 public class RootConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(RootConfig.class);
 

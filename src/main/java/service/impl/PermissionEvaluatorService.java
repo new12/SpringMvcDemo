@@ -26,12 +26,7 @@ import java.util.Collection;
 public class PermissionEvaluatorService implements PermissionEvaluator {
     @Autowired
     private JobDao jobDao;
-    private TransactionTemplate transactionTemplate;
 
-    @Autowired
-    public void  setTransactionTemplate(PlatformTransactionManager tx){
-        this.transactionTemplate = new TransactionTemplate(tx);
-    };
 
     @Override
     public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {

@@ -1,8 +1,10 @@
 package config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -26,6 +28,7 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private AuthService authService;
+
 
     @Autowired
    public void configureGlobal(AuthenticationManagerBuilder auth) throws  Exception{
@@ -51,6 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         dao.setUserDetailsService(authService);
         dao.setPasswordEncoder(md5PasswordEncoder());
         return dao;
+    }
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return  super.authenticationManager();
     }
 
 }
