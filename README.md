@@ -1,0 +1,2 @@
+刷新 curl -u test:secret --data "grant_type=refresh_token&refresh_token=d0b51bae-f83a-41e0-8574-77cda1ae5d8b&client_id=test" "http://localhost:8080/oauth/token"
+获取token curl -X POST -u test:secret "http://localhost:8080/oauth/token?grant_type=password&username=admin&password=123"
