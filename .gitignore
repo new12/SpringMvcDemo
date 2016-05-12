@@ -1,4 +1,5 @@
-/target
+/server/target
+/client/target
 .settings
 .idea
 .springBeans

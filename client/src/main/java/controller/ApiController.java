@@ -16,7 +16,7 @@ import java.net.URI;
 @RequestMapping(value = "/api")
 public class ApiController {
 
-    private final String location = "http://localhost:8080/job/name/";
+    private final String location = "http://localhost:8080/server/job/name/";
     private RestOperations restOperations;
 
     @RequestMapping(value = "/job/{name}")
