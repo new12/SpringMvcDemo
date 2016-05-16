@@ -11,6 +11,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -98,4 +100,16 @@ public class RootConfig {
         HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager(sessionFactory);
         return  hibernateTransactionManager;
     }
+
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactoryBean(){
+        return  new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor(){
+        return  new MethodValidationPostProcessor();
+    }
+
+
 }
