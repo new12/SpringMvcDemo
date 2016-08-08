@@ -1,7 +1,6 @@
-package dao.Impl;
+package dao.impl;
 
 import dao.UserDao;
-import entity.Role;
 import entity.User;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;

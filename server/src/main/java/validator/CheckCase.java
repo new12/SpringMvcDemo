@@ -1,4 +1,4 @@
-package test;
+package validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -10,8 +10,9 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * Created by kylong on 2016/5/16.
  */
-@Target({METHOD,FIELD,ANNOTATION_TYPE})
+@Target({METHOD,FIELD,ANNOTATION_TYPE,PARAMETER})
 @Retention(RUNTIME)
+@Constraint(validatedBy = CheckCaceValidator.class)
 @Documented
 public @interface CheckCase {
     String message() default "hi";
@@ -20,5 +21,5 @@ public @interface CheckCase {
 
     Class<? extends Payload>[] payload() default {};
 
-    CaseMode caseMode();
+    CaseMode value();
 }

@@ -1,8 +1,12 @@
 package entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import validator.CaseMode;
+import validator.CheckCase;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by kylong on 2016/4/24.

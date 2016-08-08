@@ -1,4 +1,4 @@
-package test;
+package validator;
 
 /**
  * Created by kylong on 2016/5/16.

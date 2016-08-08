@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface BaseDao<T> {
 
-    Serializable save(T o);
+    void save(T o);
 
     T getById(Serializable id);
 

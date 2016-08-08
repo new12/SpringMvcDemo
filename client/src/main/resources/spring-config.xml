@@ -63,4 +63,13 @@
                 </security:user-service>
             </security:authentication-provider>
         </security:authentication-manager>
+
+    <bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <!-- 注意替换为对应的CASO服务，service要换成自己注册接入CASO时的应用地址-->
+        <constructor-arg value="http://opssysdev03.dev.sh.ctripcorp.com:28080/caso/logout?service=http://localhost:8080/odb-syncer" />
+        <constructor-arg>
+            <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+        </constructor-arg>
+        <property name="filterProcessesUrl" value="/j_spring_cas_security_logout" />
+    </bean>
 </beans>

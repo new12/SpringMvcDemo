@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.impl;
 
 import dao.BaseDao;
 import org.hibernate.Query;
@@ -20,8 +20,8 @@ public  class BaseDaoImpl<T> implements BaseDao<T> {
     private SessionFactory sessionFactory;
 
     @Override
-    public Serializable save(T newInstance) {
-        return (Serializable)getSession().save(newInstance);
+    public void save(T newInstance) {
+         getSession().save(newInstance);
     }
 
     @Override

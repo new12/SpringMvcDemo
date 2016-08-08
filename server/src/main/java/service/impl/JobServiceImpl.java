@@ -1,6 +1,5 @@
 package service.impl;
 
-import dao.BaseDao;
 import dao.JobDao;
 import entity.Job;
 import org.springframework.beans.factory.annotation.Autowired;

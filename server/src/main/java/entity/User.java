@@ -9,8 +9,9 @@ import java.util.Set;
 /**
  * Created by kylong on 2016/4/18.
  */
-@Entity
+@Entity(name = "user")
 @Table(name = "user")
+@org.hibernate.annotations.Entity(dynamicUpdate = true)
 public class User {
     @Id
     @GeneratedValue

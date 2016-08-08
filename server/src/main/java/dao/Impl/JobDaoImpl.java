@@ -1,6 +1,5 @@
-package dao.Impl;
+package dao.impl;
 
-import dao.BaseDao;
 import dao.JobDao;
 import entity.Job;
 import org.hibernate.Query;
