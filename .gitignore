@@ -6,3 +6,5 @@
 SpringMvcDemo.iml
 .classpath
 .project
+/server/server.iml
+/client/client.iml
