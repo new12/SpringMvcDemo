@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by kylong on 2016/4/25.
  */
-@Repository
+//@Repository
 public class JobDaoImpl extends BaseDaoImpl<Job> implements JobDao {
     public JobDaoImpl() {
         super(Job.class);

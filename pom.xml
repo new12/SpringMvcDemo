@@ -8,7 +8,6 @@
     <modules>
         <module>client</module>
         <module>server</module>
-        <module>boot</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -142,6 +141,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>19.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

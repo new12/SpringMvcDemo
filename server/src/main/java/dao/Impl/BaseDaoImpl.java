@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by kylong on 2016/4/18.
  */
+//@Repository
 public  class BaseDaoImpl<T> implements BaseDao<T> {
     private Class<T> type;
     public BaseDaoImpl(Class<T> type){

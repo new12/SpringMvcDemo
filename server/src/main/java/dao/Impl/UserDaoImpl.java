@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by kylong on 2016/4/18.
  */
-@Repository
+//@Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     public UserDaoImpl() {
         super(User.class);

@@ -34,10 +34,10 @@ import java.util.Properties;
  * Created by Administrator on 2016/4/16.
  */
 @Configuration
-@ComponentScan(basePackages = {"service","dao.impl.jpa"})
+@ComponentScan(basePackages = {"service","dao"})
 @PropertySource("classpath:resources.properties")
 @EnableTransactionManagement
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 @Import({SecurityConfig.class,MethodSecurityConfig.class,OAuth2ServerConfig.class})
 public class RootConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(RootConfig.class);
@@ -67,20 +67,21 @@ public class RootConfig {
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
-//        LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
-//        sfb.setDataSource(dataSource);
-//        sfb.setPackagesToScan(new String[]{"entity"});
-//        Properties props = new Properties();
-//        props.setProperty("hibernate.dialect",dbDriver);
-//        props.setProperty("hibernate.show_sql","false");
-//        props.setProperty("hibernate.format_sql","false");
-//        props.setProperty("hibernate.jdbc.fetch_size","80");
-//        props.setProperty("hibernate.jdbc.batch_size","35");
-//        sfb.setHibernateProperties(props);
-//        return sfb;
-//    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
+        LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
+        sfb.setDataSource(dataSource);
+        sfb.setPackagesToScan(new String[]{"entity"});
+        Properties props = new Properties();
+        props.setProperty("hibernate.dialect",dbDriver);
+        props.setProperty("hibernate.show_sql","false");
+        props.setProperty("hibernate.format_sql","false");
+        props.setProperty("hibernate.jdbc.fetch_size","80");
+        props.setProperty("hibernate.jdbc.batch_size","35");
+        sfb.setHibernateProperties(props);
+        return sfb;
+    }
 
     @Bean
     public DataSource druidDataSource(){
@@ -108,37 +109,37 @@ public class RootConfig {
         return druidDataSource;
     }
 
+    @Bean
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory){
+        HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager(sessionFactory);
+        return  hibernateTransactionManager;
+    }
+
 //    @Bean
-//    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory){
-//        HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager(sessionFactory);
-//        return  hibernateTransactionManager;
+//    public LocalValidatorFactoryBean localValidatorFactoryBean(){
+//        return  new LocalValidatorFactoryBean();
 //    }
-
-    @Bean
-    public LocalValidatorFactoryBean localValidatorFactoryBean(){
-        return  new LocalValidatorFactoryBean();
-    }
-
-    @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor(){
-        MethodValidationPostProcessor postProcessor =   new MethodValidationPostProcessor();
-        postProcessor.setValidatorFactory(localValidatorFactoryBean());
-        return  postProcessor;
-    }
-
-    @Bean
-    public CheckCaceValidator checkCaceValidator(){
-        CheckCaceValidator validator = new CheckCaceValidator();
-        validator.setFlag("bean");
-        return  validator;
-    }
-
-    @Bean
-    public LogAspect logAspect(){
-        return  new LogAspect();
-    }
-
-
+//
+//    @Bean
+//    public MethodValidationPostProcessor methodValidationPostProcessor(){
+//        MethodValidationPostProcessor postProcessor =   new MethodValidationPostProcessor();
+//        postProcessor.setValidatorFactory(localValidatorFactoryBean());
+//        return  postProcessor;
+//    }
+//
+//    @Bean
+//    public CheckCaceValidator checkCaceValidator(){
+//        CheckCaceValidator validator = new CheckCaceValidator();
+//        validator.setFlag("bean");
+//        return  validator;
+//    }
+//
+//    @Bean
+//    public LogAspect logAspect(){
+//        return  new LogAspect();
+//    }
+//
+//
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
@@ -154,15 +155,15 @@ public class RootConfig {
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("dao.impl.jpa");
+       emfb.setPackagesToScan("dao.impl.jpa");
         return  emfb;
     }
 
-    @Bean
-    public PersistenceAnnotationBeanPostProcessor paPostProcessor(){
-        return  new PersistenceAnnotationBeanPostProcessor();
-    }
-
+//    @Bean
+//    public PersistenceAnnotationBeanPostProcessor paPostProcessor(){
+//        return  new PersistenceAnnotationBeanPostProcessor();
+//    }
+//
     @Bean
     public BeanPostProcessor persistenceTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
