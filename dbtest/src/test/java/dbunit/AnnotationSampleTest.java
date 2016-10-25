@@ -15,8 +15,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import test.lky.mapper.UserMapper;
 import test.lky.model.User;
+import test.lky.service.UserService;
 
 /**
  * Created by kylong on 2016/10/24.
@@ -32,12 +32,25 @@ import test.lky.model.User;
 @DbUnitConfiguration(databaseConnection = "dataSource")
 public class AnnotationSampleTest {
     @Autowired
-    private UserMapper userDao;
+    private UserService userService;
 
     @Test
     @DatabaseSetup("/dbunit/user.xml")
-    public void test(){
-        User user = userDao.getUser(1);
+    public void testSelect(){
+        User user = userService.get(3);
         Assert.assertEquals("lily",user.getName());
+    }
+
+    @Test
+    @DatabaseSetup("/dbunit/user.xml")
+    public void testInsert(){
+        User user = new User();
+        user.setName("aka");
+        user.setPassword("123456");
+        user.setActive(1);
+        //row为受影响的行数
+        int row = userService.insert(user);
+        User user1 = userService.get(4);
+        Assert.assertEquals("aka",user1.getName());
     }
 }

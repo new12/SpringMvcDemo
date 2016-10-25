@@ -17,7 +17,12 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User getUser(Integer userId){
-        return  userMapper.getUser(userId);
+    public User get(Integer userId){
+        return userMapper.selectByPrimaryKey(userId);
     }
+
+    public int insert(User user){
+        return userMapper.insert(user);
+    }
+
 }
