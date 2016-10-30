@@ -58,7 +58,7 @@ public class User {
     public boolean getActive() {
         if (active==null) return  false;
         int value = active.intValue();
-        return (value==1)?true:false;
+        return (value == 1);
     }
 
     public void setActive(int active) {

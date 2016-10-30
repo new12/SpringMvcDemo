@@ -11,5 +11,5 @@ import java.io.Serializable;
  */
 
 public interface UserService extends BaseService<User> {
-    public User findByName(String name);
+    User findByName(String name);
 }

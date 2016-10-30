@@ -40,8 +40,7 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
     }
 
     private Boolean checkJobPermission(Object permission, UserDetails principal, Job target) {
-        if (!target.getUser().getName().equals(principal.getUsername()))return  false;
-        return true;
+        return target.getUser().getName().equals(principal.getUsername());
     }
 
     @Override

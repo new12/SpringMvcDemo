@@ -15,5 +15,5 @@ import java.util.List;
 @Validated
 public interface JobService extends BaseService<Job> {
 
-    public List<Job> findByName(String name);
+    List<Job> findByName(String name);
 }

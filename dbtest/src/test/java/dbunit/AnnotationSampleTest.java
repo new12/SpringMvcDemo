@@ -37,7 +37,7 @@ public class AnnotationSampleTest {
     @Test
     @DatabaseSetup("/dbunit/user.xml")
     public void testSelect(){
-        User user = userService.get(3);
+        User user = userService.get(1);
         Assert.assertEquals("lily",user.getName());
     }
 

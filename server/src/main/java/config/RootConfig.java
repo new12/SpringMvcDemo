@@ -72,7 +72,7 @@ public class RootConfig {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
-        sfb.setPackagesToScan(new String[]{"entity"});
+        sfb.setPackagesToScan("entity");
         Properties props = new Properties();
         props.setProperty("hibernate.dialect",dbDriver);
         props.setProperty("hibernate.show_sql","false");

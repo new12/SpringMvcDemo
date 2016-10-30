@@ -7,13 +7,13 @@ import java.util.List;
  * Created by kylong on 2016/4/18.
  */
 public interface BaseService<T> {
-    public void save(T entity);
+    void save(T entity);
 
-    public void update(T entity);
+    void update(T entity);
 
-    public void delete(Serializable id);
+    void delete(Serializable id);
 
-    public T getById(Serializable id);
+    T getById(Serializable id);
 
 
     List<T> findByIds(Serializable[] ids);
