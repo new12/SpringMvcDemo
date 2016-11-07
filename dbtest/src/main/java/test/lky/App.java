@@ -13,10 +13,7 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException {
-        Class a = new String().getClass();
-        Class b = new Integer(1).getClass();
-        getClassName(a);
-        List<?> ss = new ArrayList<>();
+        System.out.println("hello world");
     }
 
     public static void getClassName(Class<?> a) throws IllegalAccessException, InstantiationException {

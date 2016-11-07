@@ -10,7 +10,7 @@ import java.util.Date;
  */
 
 public class PrintHelloJob {
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 * * * * ?")
     public void print(){
         System.out.println("hello, current time is " + new Date());
     }
