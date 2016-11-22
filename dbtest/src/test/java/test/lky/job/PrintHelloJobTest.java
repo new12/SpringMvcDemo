@@ -15,9 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:spring-schedule.xml")
 public class PrintHelloJobTest {
 
-    @Autowired
-    private PrintHelloJob printHelloJob;
-
     @Test
     public void test(){
         try {
@@ -29,6 +26,9 @@ public class PrintHelloJobTest {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-schedule.xml");
-        PrintHelloJob printHelloJob = (PrintHelloJob) context.getBean("printHelloJob");
+        AsyncPrintHello hello = (AsyncPrintHello) context.getBean("asyncPrintHello");
+        System.err.println("thread id: " + Thread.currentThread().getId());;
+        hello.asyncPrint();
+
     }
 }
