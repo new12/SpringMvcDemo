@@ -8,7 +8,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by didi on 16/10/17.
+ * Created by kylong on 16/10/17.
  */
 public class SimpleTest3 {
     public static void main(String[] args) {

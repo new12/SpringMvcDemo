@@ -38,9 +38,6 @@
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:sql/create_db.sql"/>
     </jdbc:initialize-database>
+    <tx:annotation-driven/>
 
-    <task:scheduler id="scheduler" pool-size="10" />
-
-    <task:annotation-driven scheduler="scheduler"/>
-    <bean id="printHelloJob" class="test.lky.job.PrintHelloJob"/>
 </beans>
