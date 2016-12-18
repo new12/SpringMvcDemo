@@ -27,7 +27,7 @@ public class PrintHelloJobTest {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-schedule.xml");
         AsyncPrintHello hello = (AsyncPrintHello) context.getBean("asyncPrintHello");
-        System.err.println("thread id: " + Thread.currentThread().getId());;
+        System.err.println("thread id: " + Thread.currentThread().getId());
         hello.asyncPrint();
 
     }

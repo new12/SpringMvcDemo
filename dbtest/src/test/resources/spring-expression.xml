@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="numberGuess" class="test.lky.express.NumberGuess">
+        <property name="randomNumber" value="#{ T(java.lang.Math).random() * 100.0 }"/>
+        <property name="classpath" value="#{systemProperties['java.class.path']}"/>
+        <!-- other properties -->
+    </bean>
+
+    <bean id="shapeGuess" class="test.lky.express.ShapeGuess">
+        <property name="initialshapeSeed" value="#{numberGuess.randomNumber}"/>
+    </bean>
+
+    <bean id="student1" class="test.lky.express.StudentBean">
+        <property name="id" value="1"/>
+        <property name="name" value="ooooo"/>
+    </bean>
+</beans>

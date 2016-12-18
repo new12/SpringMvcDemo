@@ -119,4 +119,10 @@
       active = #{active,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultType="test.lky.model.User">
+    select <include refid="Base_Column_List"/>
+    from USER
+    order by id
+  </select>
 </mapper>

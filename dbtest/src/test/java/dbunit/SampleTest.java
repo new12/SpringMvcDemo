@@ -82,7 +82,7 @@ public class SampleTest extends AbstractTransactionalJUnit4SpringContextTests{
     @Test
     public void test() throws IOException, DataSetException {
         IDataSet xmlDataSet = getXmlDataSet("student_exp.xml");
-        ITable student = xmlDataSet.getTable("student");
+        ITable student = xmlDataSet.getTable("Student");
     }
 
 }

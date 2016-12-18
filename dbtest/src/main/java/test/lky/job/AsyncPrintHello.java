@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by kylong on 2016/11/22.
  */
-@Component
+//@Component
 public class AsyncPrintHello {
     @Async
     public void asyncPrint(){

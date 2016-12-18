@@ -1,11 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!--<dataset>-->
-    <!--<user id="1" name="lily" password="f3" active="1"/>-->
-    <!--<user id="2" name="jim" password="f2" active="1"/>-->
-    <!--<user id="3" name="mike" password="f1" active="1"/>-->
-<!--</dataset>-->
 <dataset>
-    <user name="lily" password="f3" active="1"/>
-    <user name="jim" password="f2" active="1"/>
-    <user name="mike" password="f1" active="1"/>
+    <user id="1" name="jack" password="f3" active="1"/>
+    <user id="2" name="lucy" password="f2" active="1"/>
+    <user id="3" name="dobby" password="f1" active="1"/>
 </dataset>

@@ -1,6 +1,7 @@
 package dbunit;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import org.junit.Assert;
@@ -21,16 +22,8 @@ import test.lky.service.UserService;
 /**
  * Created by kylong on 2016/10/24.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-config-test.xml")
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
-        DirtiesContextTestExecutionListener.class,
-        TransactionalTestExecutionListener.class,
-        DbUnitTestExecutionListener.class})
-@Transactional
-@Rollback
-@DbUnitConfiguration(databaseConnection = "dataSource")
-public class AnnotationSampleTest {
+
+public class AnnotationSampleTest extends BaseTest{
     @Autowired
     private UserService userService;
 
