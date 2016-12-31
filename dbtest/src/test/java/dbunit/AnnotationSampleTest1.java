@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import test.lky.mapper.UserMapper;
 import test.lky.model.User;
-import test.lky.service.UserService;
+import test.lky.service.UserServiceImpl;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ import java.util.List;
 public class AnnotationSampleTest1 extends BaseTest {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private UserMapper userMapper;

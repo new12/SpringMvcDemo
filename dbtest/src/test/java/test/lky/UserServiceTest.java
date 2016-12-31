@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import test.lky.model.User;
-import test.lky.service.UserService;
+import test.lky.service.UserServiceImpl;
 import static  org.mockito.Mockito.*;
 
 
@@ -21,7 +21,7 @@ import static  org.mockito.Mockito.*;
 @ContextConfiguration("classpath:spring-config.xml")
 public class UserServiceTest {
     @Mock
-    private UserService mockuserService;
+    private UserServiceImpl mockuserService;
 
     @Before
     public void initMocks(){

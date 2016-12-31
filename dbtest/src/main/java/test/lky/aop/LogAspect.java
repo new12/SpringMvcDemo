@@ -14,7 +14,7 @@ import java.util.Date;
 @Component
 public class LogAspect {
 
-    @Around("execution(* test.lky.service.UserService.*(..)) && @annotation(test.lky.aop.Log)")
+    @Around("execution(* test.lky.service.UserServiceImpl.*(..)) && @annotation(test.lky.aop.Log)")
     public Object logAround(ProceedingJoinPoint joinPoint){
         System.out.println("logAround开始:现在时间是:"+new Date()); //方法执行前的代理处理
         Object[] args = joinPoint.getArgs();

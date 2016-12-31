@@ -3,9 +3,11 @@ package test.lky.event;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
-import org.junit.Assert;
+import org.aopalliance.aop.Advice;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.aop.Advisor;
+import org.springframework.aop.framework.Advised;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,6 +19,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import test.lky.model.User;
 import test.lky.service.UserService;
+import test.lky.service.UserServiceImpl;
 
 /**
  * Created by kylong on 2016/11/23.
@@ -45,4 +48,16 @@ public class TransactionEventTest {
 //        throw new RuntimeException();
 
     }
+
+    @Test
+    @DatabaseSetup("/dbunit/user.xml")
+    public void testAop(){
+        Advised advised = (Advised) this.userService;
+        Advisor[] advisors = advised.getAdvisors();
+        for (Advisor advisor : advisors){
+            Advice advice = advisor.getAdvice();
+            System.out.println(advice);
+        }
+    }
+
 }
